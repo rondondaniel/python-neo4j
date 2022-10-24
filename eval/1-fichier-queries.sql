@@ -23,6 +23,6 @@ CREATE (start)-[:CORRESPONDANCE]->(stop)
 // Create correspondence walk
 MATCH (s1:Stations)
 MATCH (s2:Stations)
-WITH s1.x as X1, s1.y as Y1, s2.x as X2, s2.y as Y2 
-WHERE (SQRT(((X2 - X1) ^ 2) + ((Y2-Y1) ^ 2)) < 1000)
+WITH s1 as start, s2 as stop, s1.x as X1, s1.y as Y1, s2.x as X2, s2.y as Y2 
+WHERE (SQRT(((X2 - X1) ^ 2) + ((Y2-Y1) ^ 2)) < 1000) AND start.name <> stop.name AND start.line <> stop.line
 CREATE (start)-[:CORRESPONDANCE_WALK]->(stop)
